@@ -24,6 +24,8 @@ jobs:
         run: |
           docker tag workflow-test:latest ghcr.io/erodde/workflow-test:latest
           docker push ghcr.io/erodde/workflow-test:latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Save Docker image as a tarball
 #        run: |
