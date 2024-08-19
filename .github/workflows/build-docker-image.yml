@@ -22,6 +22,7 @@ jobs:
 
       - name: Push Docker image
         run: |
+          docker tag workflow-test:latest ghcr.io/erodde/workflow-test:latest
           docker push ghcr.io/erodde/workflow-test:latest
 
 #      - name: Save Docker image as a tarball
