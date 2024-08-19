@@ -1,0 +1,31 @@
+name: Build and store docker image as artifact
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t workflow-test:latest .
+
+      - name: Save Docker image as a tarball
+        run: |
+          docker save workflow-test:latest -o workflow-test-latest.tar
+
+      - name: Upload Docker image as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflow-test-docker-image
+          path: workflow-test-latest.tar
