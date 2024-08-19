@@ -20,12 +20,16 @@ jobs:
         run: |
           docker build -t workflow-test:latest .
 
-      - name: Save Docker image as a tarball
+      - name: Push Docker image
         run: |
-          docker save workflow-test:latest -o workflow-test-latest.tar
+          docker push ghcr.io/erodde/workflow-test:latest
 
-      - name: Upload Docker image as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: workflow-test-docker-image
-          path: workflow-test-latest.tar
+#      - name: Save Docker image as a tarball
+#        run: |
+#          docker save workflow-test:latest -o workflow-test-latest.tar
+#
+#      - name: Upload Docker image as artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: workflow-test-docker-image
+#          path: workflow-test-latest.tar
