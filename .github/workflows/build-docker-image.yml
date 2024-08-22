@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'pom.xml'
+#    paths:
+#      - 'pom.xml'
 
 jobs:
   build:
