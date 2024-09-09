@@ -1,0 +1,31 @@
+name: Build and upload MyCoRe website docker image
+
+on:
+  push:
+    branches:
+      - main
+#    paths:
+#      - 'pom.xml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t mycore-website:latest .
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push Docker image
+        run: |
+          docker tag mycore-website:latest ghcr.io/erodde/mycore-website:latest
+          docker push ghcr.io/erodde/mycore-website:latest
