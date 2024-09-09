@@ -35,8 +35,8 @@ COPY pom.xml /app/
 RUN mvn dependency:go-offline
 
 # Set default args needed inside the entrypoint
-ARG GIT_REPO_URL="https://github.com/MyCoRe-Org/mycore-website.git"
-ARG HUGO_BASE_URL="https://www.mycore.de"
+ARG MYCORE_WEBSITE_REPO_URL="https://github.com/MyCoRe-Org/mycore-website.git"
+ARG MYCORE_BASE_URL="https://www.mycore.de"
 
 # Set the entrypoint script
 COPY entrypoint.sh /entrypoint.sh

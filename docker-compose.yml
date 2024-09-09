@@ -1,0 +1,8 @@
+services:
+  builder:
+    build: .
+    environment:
+      MYCORE_WEBSITE_REPO_URL: ${MYCORE_WEBSITE_REPO_URL}
+      MYCORE_BASE_URL: ${MYCORE_BASE_URL}
+    volumes:
+      - $PWD/www:/public
